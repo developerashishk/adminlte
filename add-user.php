@@ -1,3 +1,42 @@
+<?php 
+ if (isset($_POST['submit'])) {
+  
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "lte";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+$name=$_POST['name'];
+$email=$_POST['email'];
+$dob=$_POST['dob'];
+$gender=$_POST['gender'];
+$pass=$_POST['pass'];
+
+
+
+$sql = "INSERT INTO `users` (`name`, `email`, `gender`, `dob`, `password`) VALUES ('$name', '$email', '$gender', '$dob', '$pass');";
+
+if (mysqli_query($conn, $sql)) {
+  echo "<h1>New record created successfully</h1>";
+} else {
+  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+}
+?>
+
+
+
+
+
+
 <?php include 'header.php';?>
   <!-- /.navbar -->
 
@@ -24,7 +63,9 @@
     </section>
 
     <!-- Main content -->
+    <form action="" method="post">
     <section class="content">
+
       <div class="container-fluid">
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
@@ -46,30 +87,30 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control" placeholder="Enter Name">
+                  <input type="text" class="form-control" name="name" placeholder="Enter Name">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="email" class="form-control" placeholder="Enter email">
+                  <input type="email" class="form-control" name="email" placeholder="Enter email">
                 </div>
 
                 <div class="form-group">
                   <label>Gender</label>
                   <br/>
-                  <input type="radio" class="form-check-label" value="male"> Male
-                  <input type="radio" class="form-check-label" value="female"> Female
-                  <input type="radio" class="form-check-label" value="others"> Others
+                  <input type="radio" class="form-check-label" name="gender" value="male"> Male
+                  <input type="radio" class="form-check-label" name="gender" value="female"> Female
+                  <input type="radio" class="form-check-label" name="gender" value="others"> Others
                 </div>
 
                 <div class="form-group">
                   <label>Date of birth</label>
-                  <input type="date" class="form-control"  placeholder="Enter D.O.B">
+                  <input type="date" class="form-control" name="dob"  placeholder="Enter D.O.B">
                 </div>
 
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="text" class="form-control"  placeholder="Enter Password">
+                  <input type="text" class="form-control" name="pass"  placeholder="Enter Password">
                 </div>
                 <!-- /.form-group -->
               </div>
@@ -80,13 +121,14 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <button class="btn btn-primary" >Add User</button>
+            <button class="btn btn-primary" name="submit" >Add User</button>
           </div>
         </div>
         <!-- /.card -->
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
+    </form>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
