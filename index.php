@@ -57,6 +57,7 @@
                       <th>Email</th>
                       <th>Gender</th>
                       <th>D.O.B</th>
+                      <th>action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -72,6 +73,9 @@
                       <td><?php echo $row['email']; ?></td>
                       <td><?php echo $row['gender']; ?></td>
                       <td><?php echo $row['dob']; ?></td>
+                      <td>
+                        <a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
+                      </td>
                       </tr>
                   <?php
                       }
