@@ -74,6 +74,7 @@
                       <td><?php echo $row['gender']; ?></td>
                       <td><?php echo $row['dob']; ?></td>
                       <td>
+                        <a href="edit-user.php?id=<?php echo $row['id']; ?>">Edit</a> /
                         <a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
                       </td>
                       </tr>
